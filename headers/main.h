@@ -88,6 +88,7 @@ void montarLoja(){
     switch(opcao){
         case 1:
             criar();
+            montarLoja();
             break;
         case 2:
             //comprar();
@@ -99,6 +100,8 @@ void montarLoja(){
             system("cls");
             logar();
             break;
+        default:
+            break;
     }
 }
 
@@ -109,22 +112,22 @@ void logar(){
     printf("[3] Encerrar aplicacao\n");
 
     int opcao;
-    do {
-        scanf("%d", &opcao);
+    scanf("%d", &opcao);
 
-        switch(opcao){
-            case 1:
-                cadastrarUsuario();
-                break;
-            case 2:
-                logarUsuario();
-                break;
-            case 3:
-                printf("Programa encerrado.");
-                break;
-            default:
-                printf("Opcao invalida. Tente novamente.\n");
-                break;
-        }
-    } while(opcao != 3);
+    switch(opcao){
+        case 1:
+            cadastrarUsuario();
+            break;
+        case 2:
+            logarUsuario();
+            break;
+        case 3:
+            printf("Programa encerrado.");
+            break;
+        default:
+            system("cls");
+            printf("Opcao invalida. Tente novamente.\n");
+            logar();
+            break;
+    }
 }

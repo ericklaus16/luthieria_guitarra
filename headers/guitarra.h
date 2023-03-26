@@ -168,7 +168,6 @@ void selecionarStrings(struct Guitar* guitarra){
     scanf("%d", &opcao);
 
     strcpy(guitarra->strings.tamanho, tamanhosStrings[opcao - 1]);
-    system("cls");
 }
 #pragma endregion
 
@@ -181,4 +180,6 @@ struct Guitar criarGuitarra() {
     selecionarBridge(&guitarra);
     selecionarPickups(&guitarra);
     selecionarStrings(&guitarra);
+    system("cls");
+    printf("Parabens pela sua guitarra! Ela sera entregue em 7 dias!\n");
 }
