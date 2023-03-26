@@ -7,7 +7,11 @@ char descricaoTiposHeadstock[3][300] = {
 };
 char tiposMadeira[4][20] = {"Maple", "Rosewood", "Ebony", "Walnut"};
 
+// Neck
+char descricaoNeck[300] = "O neck da guitarra, um dos aspectos visuais mais importantes da guitarra, consiste em um pedaco de madeira localizado entre o Headstock e o Body que contrapoe a tensao gerada pelas cordas e estabiliza a precisao da afinacao.";   
+
 // Nut
+char descricaoNut[200] = "O nut, tambem chamado de 'pestana', eh responsavel pelo ponto de apoio das cordas que 'chegam' nas tarraxas passando sobre a escala do instrumento, partindo da ponte.";
 char tiposNut[3][10] = {"Metal", "Plastico", "Grafite"};
 char descricaoTiposNut[3][200] = {
     "O tipo Metal tem maior durabilidade, alem de prover um som bonito e limpo. Por causa disso, acabam sendo mais caros que os outros tipos.", 
@@ -29,8 +33,10 @@ char tamanhosStrings[4][4] = {"010", "011", "012", "013"};
 
 // Bridge
 char tiposBridge[2][10] = {"Fixed", "Tremolo"};
-char descricaoTiposBody[2][200] = {"A ponte fixa eh presa ao corpo da guitarra, com isso, eh possivel obter efeitos de vibracao diferentes na guitarra. Alem disso, a ponte fixa torna dificil as cordas desafinarem. ", "A ponte do tipo Tremolo permite que o guitarrista literalmente consiga reproduzir 'tremidas' no som."};
+char descricaoBridge[200] = "A ponte da guitarra e responsavel por sustentar as cordas e transmitir a vibracao gerada pelas cordas para o corpo da guitarra.";
+char descricaoTiposBridge[2][200] = {"A ponte fixa eh presa ao corpo da guitarra, com isso, eh possivel obter efeitos de vibracao diferentes na guitarra. Alem disso, a ponte fixa torna dificil as cordas desafinarem. ", "A ponte do tipo Tremolo permite que o guitarrista literalmente consiga reproduzir 'tremidas' no som."};
 
 // Pickups
+char descricaoPickups[200] = "Os pickups sao responsaveis por captar a vibracao das cordas e transforma-la em um sinal eletrico que sera amplificado pelo amplificador.";
 char tiposPickups[2][20] = {"Single-Coil", "Humbucker"};
 char descricaoTiposPickUps[2][200] = {"O tipo Single-Coil eh o mais comum em guitarras, ele possui um timbre mais quente e um sustain mais curto.", "O tipo Humbucker eh o mais comum em guitarras de metal, ele possui um timbre mais agudo e um sustain mais longo."};
