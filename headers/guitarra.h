@@ -44,6 +44,8 @@ struct Nut {
 };
 
 struct Guitar{
+    char nome[30];
+    float preco;
     struct Headstock headstock;
     struct Nut nut;
     struct Neck neck;
@@ -56,6 +58,8 @@ struct Guitar{
 
 #pragma region Funcoes
 void selecionarHeadStock(struct Guitar* guitarra){
+    guitarra->preco = 0;
+
     int opcao;
     system("cls");
     printf("Iremos comecar com o tipo de Headstock que sera utilizado na sua guitarra.\n");
@@ -75,6 +79,7 @@ void selecionarHeadStock(struct Guitar* guitarra){
     scanf("%d", &opcao);
 
     strcpy(guitarra->headstock.tonewood.nome, tiposMadeira[opcao - 1]);
+    guitarra->preco += valoresHeadstock[opcao - 1] + valoresMadeiraHeadstock[opcao - 1];
 }
 
 void selecionarNut(struct Guitar* guitarra){
@@ -89,6 +94,7 @@ void selecionarNut(struct Guitar* guitarra){
     scanf("%d", &opcao);
 
     strcpy(guitarra->nut.tipo, tiposNut[opcao - 1]);
+    guitarra->preco += valoresNut[opcao - 1];
 }
 
 void selecionarNeck(struct Guitar* guitarra){
@@ -103,6 +109,7 @@ void selecionarNeck(struct Guitar* guitarra){
     scanf("%d", &opcao);
 
     strcpy(guitarra->neck.tonewood.nome, tiposMadeira[opcao - 1]);
+    guitarra->preco += valoresMadeiraNeck[opcao - 1];
 }
 
 void selecionarBody(struct Guitar* guitarra){
@@ -116,6 +123,8 @@ void selecionarBody(struct Guitar* guitarra){
     scanf("%d", &opcao);
 
     strcpy(guitarra->body.tipo, tiposBody[opcao - 1]);
+    
+    guitarra->preco += valoresBody[opcao - 1];
 }
 
 void selecionarBridge(struct Guitar* guitarra){
@@ -130,6 +139,7 @@ void selecionarBridge(struct Guitar* guitarra){
     scanf("%d", &opcao);
 
     strcpy(guitarra->bridge.tipo, tiposBridge[opcao - 1]);
+    guitarra->preco += valoresBridges[opcao - 1];
 }
 
 void selecionarPickups(struct Guitar* guitarra){
@@ -144,6 +154,8 @@ void selecionarPickups(struct Guitar* guitarra){
     scanf("%d", &opcao);
 
     strcpy(guitarra->pickups.tipo, tiposPickups[opcao - 1]);
+    
+    guitarra->preco += valoresCaptadores[opcao - 1];
 }
 
 void selecionarStrings(struct Guitar* guitarra){
@@ -168,11 +180,37 @@ void selecionarStrings(struct Guitar* guitarra){
     scanf("%d", &opcao);
 
     strcpy(guitarra->strings.tamanho, tamanhosStrings[opcao - 1]);
+    guitarra->preco += valoresStrings[opcao - 1];
+}
+
+void criarRelatorio(struct Guitar guitarra){
+    char luthiers[3][40] = {"Eric Klaus", "Matheus Rogerio", "Matheus Gaspar"};
+
+    FILE *arquivo;
+    arquivo = fopen(strcat(guitarra.nome, ".txt"), "w");
+    fprintf(arquivo, "ERGuitars - A melhor loja de equipamentos para guitarras em Cascavel!\n");
+    fprintf(arquivo, "Pedido #%d\n", rand() % 10000);
+    fprintf(arquivo, "Luthier: %s\n\n", luthiers[rand() % 3]);
+    fprintf(arquivo, "Visão geral: \n");
+    fprintf(arquivo, "Headstock: %s\n", guitarra.headstock.tipo);
+    fprintf(arquivo, "Madeira: %s\n", guitarra.headstock.tonewood.nome);
+    fprintf(arquivo, "Nut: %s\n", guitarra.nut.tipo);
+    fprintf(arquivo, "Neck: %s\n", guitarra.neck.tonewood.nome);
+    fprintf(arquivo, "Body: %s\n", guitarra.body.tipo);
+    fprintf(arquivo, "Bridge: %s\n", guitarra.bridge.tipo);
+    fprintf(arquivo, "Pickups: %s\n", guitarra.pickups.tipo);
+    fprintf(arquivo, "Strings: %s - %s\n", guitarra.strings.marca, guitarra.strings.tamanho);
+    fprintf(arquivo, "Preço: R$%.2f\n\n", guitarra.preco);
+    fprintf(arquivo, "Obrigado pela escolha! Aproveite o pedido!\n");
+    fclose(arquivo);
 }
 #pragma endregion
 
 struct Guitar criarGuitarra() {
     struct Guitar guitarra;
+
+    printf("Qual sera o nome da sua guitarra customizada?\n");
+    scanf("%s", guitarra.nome);
     selecionarHeadStock(&guitarra);
     selecionarNut(&guitarra);
     selecionarNeck(&guitarra);
@@ -180,6 +218,8 @@ struct Guitar criarGuitarra() {
     selecionarBridge(&guitarra);
     selecionarPickups(&guitarra);
     selecionarStrings(&guitarra);
-    system("cls");
+    criarRelatorio(guitarra);
+
+    //system("cls");
     printf("Parabens pela sua guitarra! Ela sera entregue em 7 dias!\n");
 }
