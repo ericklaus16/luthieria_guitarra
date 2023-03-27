@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "main.h"
+#include "./headers/main.h"
 
 int main(){
+    alocarUsuarios();
     logar();
 
-    return 0;//penis
+    return 0;
 }
