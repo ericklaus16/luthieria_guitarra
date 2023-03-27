@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
-#include "produtos.h"
+#include "pecasGuitarraManufatura.h"
+#include "pagamento.h"
 
 #pragma region Structs
 struct Tonewood {
@@ -56,7 +58,7 @@ struct Guitar{
 };
 #pragma endregion
 
-#pragma region Funcoes
+#pragma region Funcoes Montagem
 void selecionarHeadStock(struct Guitar* guitarra){
     guitarra->preco = 0;
 
@@ -183,28 +185,49 @@ void selecionarStrings(struct Guitar* guitarra){
     guitarra->preco += valoresStrings[opcao - 1];
 }
 
-void criarRelatorio(struct Guitar guitarra){
-    char luthiers[3][40] = {"Eric Klaus", "Matheus Rogerio", "Matheus Gaspar"};
-
-    FILE *arquivo;
-    arquivo = fopen(strcat(guitarra.nome, ".txt"), "w");
-    fprintf(arquivo, "ERGuitars - A melhor loja de equipamentos para guitarras em Cascavel!\n");
-    fprintf(arquivo, "Pedido #%d\n", rand() % 10000);
-    fprintf(arquivo, "Luthier: %s\n\n", luthiers[rand() % 3]);
-    fprintf(arquivo, "Visão geral: \n");
-    fprintf(arquivo, "Headstock: %s\n", guitarra.headstock.tipo);
-    fprintf(arquivo, "Madeira: %s\n", guitarra.headstock.tonewood.nome);
-    fprintf(arquivo, "Nut: %s\n", guitarra.nut.tipo);
-    fprintf(arquivo, "Neck: %s\n", guitarra.neck.tonewood.nome);
-    fprintf(arquivo, "Body: %s\n", guitarra.body.tipo);
-    fprintf(arquivo, "Bridge: %s\n", guitarra.bridge.tipo);
-    fprintf(arquivo, "Pickups: %s\n", guitarra.pickups.tipo);
-    fprintf(arquivo, "Strings: %s - %s\n", guitarra.strings.marca, guitarra.strings.tamanho);
-    fprintf(arquivo, "Preço: R$%.2f\n\n", guitarra.preco);
-    fprintf(arquivo, "Obrigado pela escolha! Aproveite o pedido!\n");
-    fclose(arquivo);
-}
 #pragma endregion
+
+void criarRelatorio(struct Guitar guitarra, int metodo, int parcelas){
+    printf("Deseja gerar o relatorio da compra? \n");
+    printf("1 - Sim\n");
+    printf("2 - Nao\n");
+    int opcao;
+    scanf("%d", &opcao);
+
+    if(opcao == 1){
+        srand(time(NULL));
+        char luthiers[3][40] = {"Eric Klaus", "Matheus Rogerio", "Matheus Gaspar"};
+
+        FILE *arquivo;
+        arquivo = fopen(strcat(guitarra.nome, ".txt"), "w");
+        fprintf(arquivo, "ERGuitars - A melhor loja de equipamentos para guitarras em Cascavel!\n");
+        fprintf(arquivo, "Pedido #%d\n", rand() % 10000);
+        fprintf(arquivo, "Luthier: %s\n\n", luthiers[rand() % 3]);
+        fprintf(arquivo, "Visão geral: \n");
+        fprintf(arquivo, "Headstock: %s\n", guitarra.headstock.tipo);
+        fprintf(arquivo, "Madeira: %s\n", guitarra.headstock.tonewood.nome);
+        fprintf(arquivo, "Nut: %s\n", guitarra.nut.tipo);
+        fprintf(arquivo, "Neck: %s\n", guitarra.neck.tonewood.nome);
+        fprintf(arquivo, "Body: %s\n", guitarra.body.tipo);
+        fprintf(arquivo, "Bridge: %s\n", guitarra.bridge.tipo);
+        fprintf(arquivo, "Pickups: %s\n", guitarra.pickups.tipo);
+        fprintf(arquivo, "Strings: %s - %s\n", guitarra.strings.marca, guitarra.strings.tamanho);
+        fprintf(arquivo, "Preço: R$%.2f\n", guitarra.preco);
+        if(metodo == 1){
+            fprintf(arquivo, "Método de Pagamento: Boleto parcelado, %dx de R$%.2f\n\n", parcelas, guitarra.preco / parcelas);
+        } else if(metodo == 2){ 
+            fprintf(arquivo, "Método de Pagamento: R$%.2f a vista por pix\n\n", guitarra.preco * 0.9);
+        } else if(metodo == 3){
+            fprintf(arquivo, "Método de Pagamento: R$%.2f a vista por pix\n\n", guitarra.preco);
+        }
+        fprintf(arquivo, "Obrigado pela escolha! Aproveite o pedido!\n");
+        fprintf(arquivo, "ERGGuitars - Cascavel\n");
+        fprintf(arquivo, "Telefone 4002-8922\n");
+        fclose(arquivo);
+    } else {
+        printf("Obrigado pela escolha! Aproveite o pedido!\n");
+    }
+}
 
 struct Guitar criarGuitarra() {
     struct Guitar guitarra;
@@ -218,7 +241,9 @@ struct Guitar criarGuitarra() {
     selecionarBridge(&guitarra);
     selecionarPickups(&guitarra);
     selecionarStrings(&guitarra);
-    criarRelatorio(guitarra);
+    int parcelas;
+    int metodoPagamento = pagar(guitarra.preco, &parcelas);
+    criarRelatorio(guitarra, metodoPagamento, parcelas);
 
     //system("cls");
     printf("Parabens pela sua guitarra! Ela sera entregue em 7 dias!\n");
