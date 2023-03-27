@@ -6,7 +6,7 @@
 
 #include "montar.h"
 #include "comprar.h"
-#include "vender.h"
+#include "compraPecas.h"
 
 void logar();
 void alocarUsuarios();
@@ -109,7 +109,8 @@ void montarLoja(){
                 montarLoja();
                 break;
             case 3:
-                //vender();
+                comprarPecas();
+                montarLoja();
                 break;
             case 4:
                 system("cls");

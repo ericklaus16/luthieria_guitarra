@@ -19,9 +19,9 @@ int pagar(float preco, int* parcelas){
         *parcelas = aux;
         printf("Parabens! A compra foi efetuada com sucesso. O valor da parcela sera de R$%.2f\n", preco / *parcelas);
     } else if (opt == 2){
-        printf("Parabens! A compra foi efetuada com sucesso. O valor do boleto sera de R$%.2f\n", 0.9 * preco);
+        printf("Parabens! A compra foi efetuada com sucesso. O valor com desconto sera de R$%.2f\n", 0.9 * preco);
     } else if (opt == 3){
-        printf("Parabens! A compra foi efetuada com sucesso. O valor do boleto sera de R$%.2f\n", preco);
+        printf("Parabens! A compra foi efetuada com sucesso. O valor a vista sera de R$%.2f\n", preco);
     } else {
         printf("Opcao invalida!\n");
         return 0;

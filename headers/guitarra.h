@@ -219,9 +219,9 @@ void criarRelatorio(struct Guitar guitarra, int metodo, int parcelas){
         if(metodo == 1){
             fprintf(arquivo, "Método de Pagamento: Boleto parcelado, %dx de R$%.2f\n\n", parcelas, guitarra.preco / parcelas);
         } else if(metodo == 2){ 
-            fprintf(arquivo, "Método de Pagamento: R$%.2f a vista por pix\n\n", guitarra.preco * 0.9);
+            fprintf(arquivo, "Método de Pagamento: R$%.2f com desconto por pix\n\n", guitarra.preco * 0.9);
         } else if(metodo == 3){
-            fprintf(arquivo, "Método de Pagamento: R$%.2f a vista por pix\n\n", guitarra.preco);
+            fprintf(arquivo, "Método de Pagamento: R$%.2f a vista\n\n", guitarra.preco);
         }
         fprintf(arquivo, "Obrigado pela escolha! Aproveite o pedido!\n");
         fprintf(arquivo, "ERGGuitars - Cascavel\n");
