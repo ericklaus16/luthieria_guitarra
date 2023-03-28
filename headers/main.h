@@ -105,7 +105,7 @@ void montarLoja(){
                 montarLoja();
                 break;
             case 2:
-                presets();
+                comprarPreset();
                 montarLoja();
                 break;
             case 3:

@@ -9,6 +9,24 @@
 #include "pecasGuitarraManufatura.h"
 #include "pagamento.h"
 
+char modelGuitar[15][75] = {
+    "Ibanez JEM.JR (Steve Vai)",
+    "Shecter Custom Synyster Gates",
+    "Slash Gibson Les Paul",
+    "Richie Sambora Strato",
+    "Ibanez RG550 Japan",
+    "Kurt Cobain Signature Jaguar",
+    "David Gilmour Black Strato",
+    "Prince Love Guitar",
+    "Angus Young Gibson SG",
+    "Gaspar Signature VivaGold 2",
+    "Eric Signature Ibanez Madeira",
+    "Matheus Signature Epiphone Les Paul",
+    "Matthias Jabs Gibson Explorer",
+    "Chuck Schuldiner B.C. Rich Stealth",
+    "Dimebag Darrell Randall Guitar"
+};
+
 #pragma region Structs
 struct Tonewood {
     char nome[50];
