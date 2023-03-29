@@ -4,6 +4,7 @@
 #include"pecasGuitarraManufatura.h"
 #include "guitarra.h"
 #include "time.h"
+#include "pagamento.h"
 
 struct Guitar guitarras[7];
 
@@ -53,7 +54,13 @@ void presets(){
 
 void comprarPreset(){
     for (int i = 0; i < 7; i++){
-        printf ("%d - %s\n",i+1, guitarras[i].nome);
+        printf ("%d - %s R$%.2f\n",i+1, guitarras[i].nome, guitarras[i].preco);
     }
+    int i = 0;
+    printf ("\nEscolha uma para saber mais detalhes: ");
+    scanf ("%i", &i);
+    printf ("\nNome da guitarra: %s\nTipo do corpo: %s\nTipo de ponte: %s\nTipo de captador: %s\nTipo de headstock: %s\nTipo de nut: %s\nTipo de madeira do braco: %s\nMarca da corda: %s\nTamanho da corda: %s\n", guitarras[i-1].nome, guitarras[i-1].body.tipo, guitarras[i-1].bridge.tipo, guitarras[i-1].pickups, guitarras[i-1].headstock.tipo, guitarras[i-1].nut.tipo, guitarras[i-1].neck.tonewood.nome, guitarras[i-1].strings.marca, guitarras[i-1].strings.tamanho);
+    int parcelas;
+    pagar(guitarras[i-1].preco, &parcelas);
 }
 #endif

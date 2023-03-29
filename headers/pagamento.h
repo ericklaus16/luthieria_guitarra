@@ -1,3 +1,5 @@
+#ifndef PAGAMENTO_H
+#define PAGAMENTO_H
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -29,3 +31,4 @@ int pagar(float preco, int* parcelas){
 
     return opt;
 }
+#endif
