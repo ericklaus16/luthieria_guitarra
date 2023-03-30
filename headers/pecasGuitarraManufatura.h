@@ -5,7 +5,7 @@ char tiposHeadstock[3][15] = {"Straight", "Tilted-back", "Scarf"};
 float valoresHeadstock[3] = {200, 1000, 1500};
 char descricaoTiposHeadstock[3][300] = {
     "Esse tipo de Headstock nao possui nenhum tipo de angulacao, seu design simples resulta em um preco menor.", 
-    "Esse tipo de Headstock possui uma angulacao consideravel com o braco da guitarra, devido a angulacao as cordas estao menos propensas a desafinar.", 
+    "Esse tipo de Headstock possui uma angulacao consideravel com o braco da guitarra, devido a angulacao as cordas estao menos propensas a desheaders/pecasGuitarraManufatura.hafinar.", 
     "Esse tipo de Headstock possui a mesma angulacao que o Tilted-back, mas, possui uma estabilidade maior e um timbre melhor das cordas."
 };
 

@@ -117,6 +117,9 @@ void montarLoja(){
                 logar();
                 break;
             default:
+                system("cls");
+                printf("Opcao invalida. Tente novamente.\n");
+                montarLoja();
                 break;
         }
     } else {
@@ -151,6 +154,9 @@ void montarLoja(){
                 logar();
                 break;
             default:
+                system("cls");
+                printf("Opcao invalida. Tente novamente.\n");
+                montarLoja();
                 break;
         }
     }

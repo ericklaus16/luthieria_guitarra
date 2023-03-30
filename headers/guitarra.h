@@ -29,7 +29,7 @@ char modelGuitar[15][75] = {
 
 #pragma region Structs
 struct Tonewood {
-    char nome[50];
+    char nome[20];
     char descricao[300];
     float preco;
 };
@@ -54,7 +54,7 @@ struct Bridge {
 };
 
 struct Pickups {
-    char tipo[10];
+    char tipo[20];
 };
 
 struct Strings {
@@ -67,7 +67,7 @@ struct Nut {
 };
 
 struct Guitar{
-    char nome[30];
+    char nome[75];
     float preco;
     struct Headstock headstock;
     struct Nut nut;
@@ -93,6 +93,7 @@ void selecionarHeadStock(struct Guitar* guitarra){
     scanf("%d", &opcao);
 
     strcpy(guitarra->headstock.tipo, tiposHeadstock[opcao - 1]);
+    guitarra->preco += valoresHeadstock[opcao - 1];
     system("cls");
     printf("Muito bem! Seu headstock foi escolhido com sucesso. Agora escolha qual madeira constituira o headstock.\n");
     for(int i = 0; i < 4; i++){
@@ -102,7 +103,7 @@ void selecionarHeadStock(struct Guitar* guitarra){
     scanf("%d", &opcao);
 
     strcpy(guitarra->headstock.tonewood.nome, tiposMadeira[opcao - 1]);
-    guitarra->preco += valoresHeadstock[opcao - 1] + valoresMadeiraHeadstock[opcao - 1];
+    guitarra->preco += valoresMadeiraHeadstock[opcao - 1];
 }
 
 void selecionarNut(struct Guitar* guitarra){
@@ -214,6 +215,7 @@ void criarRelatorio(struct Guitar guitarra, int metodo, int parcelas){
     printf("2 - Nao\n");
     int opcao;
     scanf("%d", &opcao);
+    system("cls");
 
     if(opcao == 1){
         srand(time(NULL));
@@ -253,7 +255,7 @@ void criarRelatorio(struct Guitar guitarra, int metodo, int parcelas){
 struct Guitar criarGuitarra() {
     struct Guitar guitarra;
 
-    printf("Qual sera o nome da sua guitarra customizada?\n");
+    printf("Qual sera o nome da sua guitarra customizada? (sem espacos)\n");
     scanf("%s", guitarra.nome);
     selecionarHeadStock(&guitarra);
     selecionarNut(&guitarra);
