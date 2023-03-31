@@ -13,7 +13,7 @@ int pagar(float preco, int* parcelas){
 
     int opt;
     scanf("%d", &opt);
-
+    system("cls");
     if(opt == 1){
         int aux;
         printf("Qual o numero de parcelas?\n");

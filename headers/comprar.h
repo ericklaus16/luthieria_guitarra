@@ -81,6 +81,7 @@ void comprarPreset(){
     printf ("\nQual guitarra voce deseja comprar? [Digite 0 para retornar] ");
     scanf ("%d", &gtr);
     if(gtr == 0){
+        system("cls");
         return;
     } else if(gtr >= 1 && gtr <= 7){
         printf ("\nNome da guitarra: %s \nTipo do corpo: %s \nTipo de ponte: %s \nTipo de captador: %s \nTipo de headstock: %s \nTipo de nut: %s \nTipo de madeira do braco: %s \nMarca da corda: %s \nTamanho da corda: %s \n", guitarras[gtr-1].nome, guitarras[gtr-1].body.tipo, guitarras[gtr-1].bridge.tipo, guitarras[gtr-1].pickups.tipo, guitarras[gtr-1].headstock.tipo, guitarras[gtr-1].nut.tipo, guitarras[gtr-1].neck.tonewood.nome, guitarras[gtr-1].strings.marca, guitarras[gtr-1].strings.tamanho);
@@ -90,5 +91,7 @@ void comprarPreset(){
     } else {
         printf("A opcao digitada eh invalida.\n");
     }
+    
+    system("cls");
 }
 #endif

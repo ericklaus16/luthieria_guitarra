@@ -6,6 +6,7 @@
 
 int main(){
     inicializarEstoque();
+    InicializarProdutosPtr();
     alocarUsuarios();
     presets();
     logar();

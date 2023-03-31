@@ -3,9 +3,20 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "time.h"
 
 #include "produtos.h"
+
+
+struct ProdutosBase {
+    char nome[50];
+    float preco;
+    int quantidade;
+};
+
+struct ProdutosBase* products;
+int qntProdutos = 16;
 
 struct Funcionarios {
     char nome[50];
@@ -31,28 +42,52 @@ void inicializarEstoque(){
 void listarEReporEstoque(){
     system("cls");
     printf("Estoque atual: \n");
-    for(int i = 0; i < 16; i++){
-        printf("%d - %s Quantidade: %d unidades\n", i + 1, produtos[i], estoque[i]);
+    for(int i = 0; i < qntProdutos; i++){
+        printf("%d - %s Quantidade: %d unidades\n", i + 1, products[i].nome, products[i].quantidade);
     }
-    printf("Deseja repor algum item? [Digite 0 para retornar]");
+    printf("Deseja repor algum item? [Digite 0 para retornar] ");
     int opt;
     scanf("%d", &opt);
 
     if(opt == 0){
+        system("cls");
         return;
     } else {
-        if(opt <= 16){
-            printf("Quantos itens voce deseja repor ao produto %s? ", produtos[opt - 1]);
+        if(opt <= qntProdutos){
+            printf("Quantos itens voce deseja repor ao produto %s? ", products[opt - 1].nome);
             int qnt;
             scanf("%d", &qnt);
-            estoque[opt - 1] += qnt;
+            products[opt - 1].quantidade += qnt;
         }
     }
     system("cls");
 }
 
+void InicializarProdutosPtr(){
+    products = (struct ProdutosBase*)malloc(16 * sizeof(struct ProdutosBase));
+
+    for(int i = 0; i < 16; i++){
+        strcpy(products[i].nome, produtos[i]);
+        products[i].preco = precoMedio[i];
+        products[i].quantidade = estoque[i];
+    }
+}
+
 void addProduto(){
+    fflush(stdin);
     system("cls");
+    qntProdutos += 1;
+    products = (struct ProdutosBase*)realloc(products, qntProdutos * sizeof(struct ProdutosBase));
+
+    printf("Qual produto deseja adicionar? ");
+    gets(products[qntProdutos - 1].nome);
+    fflush(stdin);
+    printf("Quanto custa o produto? ");
+    scanf("%f", &products[qntProdutos - 1].preco);
+    printf("Quantos itens estarao disponiveis inicialmente no estoque? ");
+    scanf("%d", &products[qntProdutos - 1].quantidade);
+    system("cls");
+    printf("Produto cadastro com sucesso!\n");
 }
 
 void addFuncionario(){
