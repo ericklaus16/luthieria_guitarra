@@ -1,3 +1,6 @@
+#ifndef FUNCIONARIO_H
+#define FUNCIONARIO_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "time.h"
@@ -17,8 +20,6 @@ struct Funcionarios {
 int quantidadeFuncionarios = 0;
 struct Funcionarios* funcionarios;
 
-int criouEstoque = 0;
-
 void inicializarEstoque(){
     srand(time(NULL));
     funcionarios = (struct Funcionarios*)malloc(quantidadeFuncionarios * sizeof(struct Funcionarios));
@@ -28,11 +29,6 @@ void inicializarEstoque(){
 }
 
 void listarEReporEstoque(){
-    if(criouEstoque == 0){
-        inicializarEstoque();
-        criouEstoque = 1;
-    }
-
     system("cls");
     printf("Estoque atual: \n");
     for(int i = 0; i < 16; i++){
@@ -130,3 +126,4 @@ void listarFuncionarios(){
         printf("Nao existe nenhum funcionario contratado no momento.\n");
     }
 }
+#endif

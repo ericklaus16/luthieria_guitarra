@@ -1,4 +1,5 @@
-
+#ifndef PRODUTOS_H
+#define PRODUTOS_H
 char produtos[16][50] = {
     "Corda Solez 010",
     "Corda Solez 011",
@@ -30,3 +31,4 @@ float precoMedio[16] = {
 };
 
 int estoque[16];
+#endif
