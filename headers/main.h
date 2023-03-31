@@ -73,8 +73,8 @@ void logarUsuario(){
             if(!strcmp(senha, usuarios[i].senha)){
                 auth = 1;
                 ehFuncionario = usuarios[i].admin;
-            } 
-        } 
+            }
+        }
     }
 
     if(auth == 1){
@@ -96,7 +96,7 @@ void montarLoja(){
         printf("[1] Montar sua propria guitarra\n");
         printf("[2] Comprar uma guitarra com vendedores\n");
         printf("[3] Compra de produtos relacionados\n"); // Amps, cabos, e pa
-        printf("[4] Retornar para o menu.\n");
+        printf("[4] Retornar para o menu\n");
         scanf("%d", &opcao);
 
         switch(opcao){
@@ -128,7 +128,8 @@ void montarLoja(){
         printf("[1] Repor estoque de produtos\n");
         printf("[2] Adicionar novo produto a loja\n");
         printf("[3] Adicionar funcionario\n"); // Amps, cabos, e pa
-        printf("[4] Retornar para o menu.\n");
+        printf("[4] Listar funcionarios\n");
+        printf("[5] Retornar para o menu\n");
         scanf("%d", &opcao);
 
         switch(opcao){
@@ -150,6 +151,10 @@ void montarLoja(){
                 montarLoja();
                 break;
             case 4:
+                listarFuncionarios();
+                montarLoja();
+                break;
+            case 5:
                 system("cls");
                 logar();
                 break;

@@ -11,6 +11,7 @@ struct Funcionarios {
     char rg[10];
     char email[50];
     char senha[25];
+    char cep[9];
 };
 
 int quantidadeFuncionarios = 0;
@@ -45,13 +46,13 @@ void listarEReporEstoque(){
         return;
     } else {
         if(opt <= 16){
-            printf("Quantos itens você deseja repor ao produto %s? ", produtos[opt - 1]);
+            printf("Quantos itens voce deseja repor ao produto %s? ", produtos[opt - 1]);
             int qnt;
             scanf("%d", &qnt);
             estoque[opt - 1] += qnt;
         }
     }
-
+    system("cls");
 }
 
 void addProduto(){
@@ -68,6 +69,8 @@ void addFuncionario(){
     fflush(stdin);
     printf("Idade: ");
     scanf("%d", &funcionarios[quantidadeFuncionarios - 1].idade);
+    printf("CEP: ");
+    scanf("%s", &funcionarios[quantidadeFuncionarios - 1].cep);
     printf("CPF: ");
     scanf("%s", &funcionarios[quantidadeFuncionarios - 1].cpf);
     printf("RG: ");
@@ -76,4 +79,54 @@ void addFuncionario(){
     scanf("%s", &funcionarios[quantidadeFuncionarios - 1].email);
     printf("Senha: ");
     scanf("%s", &funcionarios[quantidadeFuncionarios - 1].senha);
+    system("cls");
+    printf("Funcionario adicionado com sucesso!\n");
+}
+
+void listarFuncionarios(){
+    for(int i = 0; i < quantidadeFuncionarios; i++){
+        printf("[%d] - %s\n", i + 1, funcionarios[i].nome);
+    }
+    int opt;
+    if(quantidadeFuncionarios > 0){
+        printf("De qual funcionario voce deseja ver mais detalhes? [0 para retornar]");
+        scanf("%d", &opt);
+
+        if(opt == 0){
+            system("cls");
+        } else if(opt <= quantidadeFuncionarios){
+            system("cls");
+            printf("Funcionario %s:\n", funcionarios[opt - 1].nome);
+            printf("Idade: %d\n", funcionarios[opt - 1].idade);
+            printf("E-mail: %s\n", funcionarios[opt - 1].email);
+            printf("CEP: %s\n", funcionarios[opt - 1].cep);
+            printf("CPF: %s\n", funcionarios[opt - 1].cpf);
+            printf("RG: %s\n", funcionarios[opt - 1].rg);
+            printf("Senha de Login: %s\n\n", funcionarios[opt - 1].senha);
+            printf("Acoes:\n");
+            printf("[1] - Demitir\n");
+            printf("[2] - Retornar\n");
+            printf("Escolha uma opcao: ");
+            int opt2;
+            scanf("%d", &opt2);
+            struct Funcionarios funcionarioDemitido = funcionarios[opt - 1];
+            switch(opt2){
+                case 1:
+                    for(int i = 1; i < quantidadeFuncionarios; i++){
+                        funcionarios[i - 1] = funcionarios[i];
+                    }
+                    funcionarios[quantidadeFuncionarios - 1] = funcionarioDemitido;
+                    quantidadeFuncionarios -= 1;
+                    funcionarios = (struct Funcionarios*)realloc(funcionarios, quantidadeFuncionarios * sizeof(struct Funcionarios));
+                    system("cls");
+                    break;
+                default:
+                    system("cls");
+                    listarFuncionarios();
+                    break;
+            }
+        }
+    } else {
+        printf("Nao existe nenhum funcionario contratado no momento.\n");
+    }
 }

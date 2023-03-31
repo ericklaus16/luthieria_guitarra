@@ -49,7 +49,7 @@ void presets(){
         value = rand() % 2;
         guitarras[i].preco += valoresCaptadores[value];
         strcpy(guitarras[i].pickups.tipo, tiposPickups[value]);
-        
+
         value = rand() % 4;
         guitarras[i].preco += valoresMadeiraHeadstock[value];
         strcpy(guitarras[i].headstock.tonewood.nome, tiposMadeira[value]);
@@ -77,17 +77,16 @@ void comprarPreset(){
     for (int i = 0; i < 7; i++){
         printf ("%d - %s R$%.2f\n",i+1, guitarras[i].nome, guitarras[i].preco);
     }
-    int i = 0;
+    int gtr;
     printf ("\nQual guitarra voce deseja comprar? [Digite 0 para retornar] ");
-    scanf ("%i", &i);
-    system("cls");
-    if(i == 0){
+    scanf ("%d", &gtr);
+    if(gtr == 0){
         return;
-    } else if(i >= 1 && i <= 7){
-        printf ("\nNome da guitarra: %s \nTipo do corpo: %s \nTipo de ponte: %s \nTipo de captador: %s \nTipo de headstock: %s \nTipo de nut: %s \nTipo de madeira do braco: %s \nMarca da corda: %s \nTamanho da corda: %s \n", guitarras[i-1].nome, guitarras[i-1].body.tipo, guitarras[i-1].bridge.tipo, guitarras[i-1].pickups, guitarras[i-1].headstock.tipo, guitarras[i-1].nut.tipo, guitarras[i-1].neck.tonewood.nome, guitarras[i-1].strings.marca, guitarras[i-1].strings.tamanho);
+    } else if(gtr >= 1 && gtr <= 7){
+        printf ("\nNome da guitarra: %s \nTipo do corpo: %s \nTipo de ponte: %s \nTipo de captador: %s \nTipo de headstock: %s \nTipo de nut: %s \nTipo de madeira do braco: %s \nMarca da corda: %s \nTamanho da corda: %s \n", guitarras[gtr-1].nome, guitarras[gtr-1].body.tipo, guitarras[gtr-1].bridge.tipo, guitarras[gtr-1].pickups.tipo, guitarras[gtr-1].headstock.tipo, guitarras[gtr-1].nut.tipo, guitarras[gtr-1].neck.tonewood.nome, guitarras[gtr-1].strings.marca, guitarras[gtr-1].strings.tamanho);
         int parcelas;
-        int metodoPagamento = pagar(guitarras[i-1].preco, &parcelas);
-        criarRelatorio(guitarras[i-1], metodoPagamento, parcelas);
+        int metodoPagamento = pagar(guitarras[gtr-1].preco, &parcelas);
+        criarRelatorio(guitarras[gtr-1], metodoPagamento, parcelas);
     } else {
         printf("A opcao digitada eh invalida.\n");
     }
